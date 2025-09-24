@@ -4,6 +4,7 @@
     🔧 ¡MODIFICADO! Añadido un campo para el "Argumento del Arma" en la pestaña Aura.
     🐛 ¡CORREGIDO! La función "Bring" ahora simula un agarre para evitar que los items se queden pegados.
     📱 ¡NUEVO! Detección automática de plataforma. Se añade un botón de menú para dispositivos móviles.
+     draggable ¡MODIFICADO! El botón de menú para móviles ahora es arrastrable.
     🎨 Diseño completamente renovado con animaciones fluidas
     🌟 Interfaz moderna con efectos visuales premium
 ]]
@@ -1020,8 +1021,43 @@ if UserInputService.TouchEnabled then
     mtStroke.Color = Config.Theme.Text
     mtStroke.Thickness = 1.5
 
-    -- Conectar el botón móvil a la función de abrir/cerrar
-    MobileToggleButton.MouseButton1Click:Connect(toggleMenu)
+    -- [NUEVO] Lógica para que el botón sea arrastrable y maneje clics.
+    local dragConnection = nil
+    local endConnection = nil
+
+    MobileToggleButton.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            local startPosition = input.Position
+            local startFramePosition = MobileToggleButton.Position
+            local wasDragged = false
+
+            -- Desconectar cualquier conexión previa para evitar duplicados
+            if dragConnection then dragConnection:Disconnect() end
+            if endConnection then endConnection:Disconnect() end
+
+            dragConnection = UserInputService.InputChanged:Connect(function(changedInput)
+                if changedInput.UserInputType == input.UserInputType then
+                    local delta = changedInput.Position - startPosition
+                    MobileToggleButton.Position = UDim2.new(startFramePosition.X.Scale, startFramePosition.X.Offset + delta.X, startFramePosition.Y.Scale, startFramePosition.Y.Offset + delta.Y)
+                    
+                    if not wasDragged and delta.Magnitude > 5 then -- Umbral para considerar arrastre
+                        wasDragged = true
+                    end
+                end
+            end)
+
+            endConnection = UserInputService.InputEnded:Connect(function(endedInput)
+                if endedInput.UserInputType == input.UserInputType then
+                    dragConnection:Disconnect()
+                    endConnection:Disconnect()
+                    
+                    if not wasDragged then
+                        toggleMenu()
+                    end
+                end
+            end)
+        end
+    end)
 else
     -- Es PC, usar la tecla 'G' como antes.
     UserInputService.InputBegan:Connect(function(input, gp)
@@ -1067,3 +1103,4 @@ local function Initialize()
 end
 
 pcall(Initialize)
+

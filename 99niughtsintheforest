@@ -1,35 +1,23 @@
-local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-function gDzqmlxertLJNZnxslXxsrbNUyKSVyKZQregvfoDRJAIvVgvpvjknWZWwog(data) m=string.sub(data, 0, 55) data=data:gsub(m,'')
-
-data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) if (x == '=') then return '' end local r,f='',(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end return r; end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x) if (#x ~= 8) then return '' end local c=0 for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end return string.char(c) end)) end
-
-
- 
-
-
-function OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA(code)res=gDzqmlxertLJNZnxslXxsrbNUyKSVyKZQregvfoDRJAIvVgvpvjknWZWwog('sLbetYBRhhnftVwQvimeezLktzYbsFiwiUsIuAgAlnNVOVyqlZWENUX')for i in ipairs(code)do res=res..string.char(code[i]/105)end return res end 
-
-
 --[[
     Ultimate Menu v4.1 - Premium Edition (Modificado por Gemini)
-    ✨ ¡NUEVO! Añadida pestaña OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11025,12075,10395}) con sliders para WalkSpeed y JumpPower.
-    🔧 ¡MODIFICADO! Añadido un campo para el OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11970,10815,12285,11445,10605,11550,12180,11655,3360,10500,10605,11340,3360,6825,11970,11445,10185}) en la pestaña Aura.
-    🐛 ¡CORREGIDO! La función OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,11970,11025,11550,10815}) ahora simula un agarre para evitar que los items se queden pegados.
+    ✨ ¡NUEVO! Añadida pestaña "Misc" con sliders para WalkSpeed y JumpPower.
+    🔧 ¡MODIFICADO! Añadido un campo para el "Argumento del Arma" en la pestaña Aura.
+    🐛 ¡CORREGIDO! La función "Bring" ahora simula un agarre para evitar que los items se queden pegados.
     📱 ¡NUEVO! Detección automática de plataforma. Se añade un botón de menú para dispositivos móviles.
     🎨 Diseño completamente renovado con animaciones fluidas
     🌟 Interfaz moderna con efectos visuales premium
 ]]
 
 --// Servicios
-local Players = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8400,11340,10185,12705,10605,11970,12075}))
-local ReplicatedStorage = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,11760,11340,11025,10395,10185,12180,10605,10500,8715,12180,11655,11970,10185,10815,10605}))
-local StarterGui = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,12180,10185,11970,12180,10605,11970,7455,12285,11025}))
-local CoreGui = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7035,11655,11970,10605,7455,12285,11025}))
-local Workspace = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({9135,11655,11970,11235,12075,11760,10185,10395,10605}))
-local TweenService = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,12495,10605,10605,11550,8715,10605,11970,12390,11025,10395,10605}))
-local UserInputService = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,12075,10605,11970,7665,11550,11760,12285,12180,8715,10605,11970,12390,11025,10395,10605}))
-local RunService = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,12285,11550,8715,10605,11970,12390,11025,10395,10605}))
-local Debris = game:GetService(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7140,10605,10290,11970,11025,12075}))
+local Players = game:GetService('Players')
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local StarterGui = game:GetService('StarterGui')
+local CoreGui = game:GetService('CoreGui')
+local Workspace = game:GetService('Workspace')
+local TweenService = game:GetService('TweenService')
+local UserInputService = game:GetService('UserInputService')
+local RunService = game:GetService('RunService')
+local Debris = game:GetService('Debris')
 
 local LocalPlayer = Players.LocalPlayer
 
@@ -52,14 +40,14 @@ local Config = {
         IsEnabled = false,
         Interval = 0.2,
         Range = 800,
-        TargetFolder = Workspace:WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7035,10920,10185,11970,10185,10395,12180,10605,11970,12075}), 5),
-        WeaponName = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8295,11340,10500,3360,6825,12600,10605}),
-        StaticArg3 = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({5145,9975,5775,5670,5565,5250,5775,5775,5145,5355,5775,5040}),
+        TargetFolder = Workspace:WaitForChild('Characters', 5),
+        WeaponName = 'Old Axe',
+        StaticArg3 = '1_7652771370',
         VisualEffects = true,
     },
 
     ItemsList = {
-        FolderName = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,12180,10605,11445,12075}),
+        FolderName = 'Items',
     },
 
     UI = {
@@ -73,17 +61,17 @@ local Config = {
 local NotificationContainer
 
 local function createNotificationSystem()
-    local NotifGui = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,10395,11970,10605,10605,11550,7455,12285,11025}), CoreGui)
-    NotifGui.Name = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8400,11970,10605,11445,11025,12285,11445,8190,11655,12180,11025,10710,11025,10395,10185,12180,11025,11655,11550,12075})
+    local NotifGui = Instance.new('ScreenGui', CoreGui)
+    NotifGui.Name = 'PremiumNotifications'
     NotifGui.ResetOnSpawn = false
     NotifGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-    NotificationContainer = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), NotifGui)
+    NotificationContainer = Instance.new('Frame', NotifGui)
     NotificationContainer.Size = UDim2.new(0, 320, 1, -20)
     NotificationContainer.Position = UDim2.new(1, -330, 0, 10)
     NotificationContainer.BackgroundTransparency = 1
 
-    local Layout = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7980,11025,12075,12180,7980,10185,12705,11655,12285,12180}), NotificationContainer)
+    local Layout = Instance.new('UIListLayout', NotificationContainer)
     Layout.Padding = UDim.new(0, 10)
     Layout.SortOrder = Enum.SortOrder.LayoutOrder
     Layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
@@ -101,9 +89,9 @@ local function notify(type, text, duration)
         info = Config.Theme.Primary,
     }
     local icons =
-        { success = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,13965}), error = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16485,14700}), warning = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,16800,25095,19320,15015}), info = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,13860,19425,25095,19320,15015}) }
+        { success = '✅', error = '❌', warning = '⚠️', info = 'ℹ️' }
 
-    local Notif = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}))
+    local Notif = Instance.new('Frame')
     Notif.Size = UDim2.new(1, 0, 0, 60)
     Notif.BackgroundColor3 = Config.Theme.Surface
     Notif.BackgroundTransparency = 0.1
@@ -111,22 +99,22 @@ local function notify(type, text, duration)
     Notif.ClipsDescendants = true
     Notif.Parent = NotificationContainer
 
-    local Corner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), Notif)
+    local Corner = Instance.new('UICorner', Notif)
     Corner.CornerRadius = UDim.new(0, 8)
-    local Stroke = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,8715,12180,11970,11655,11235,10605}), Notif)
+    local Stroke = Instance.new('UIStroke', Notif)
     Stroke.Color = colors[type] or Config.Theme.Primary
     Stroke.Thickness = 1.5
 
-    local IconLabel = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), Notif)
+    local IconLabel = Instance.new('TextLabel', Notif)
     IconLabel.Size = UDim2.new(0, 30, 1, 0)
     IconLabel.Position = UDim2.new(0, 10, 0, 0)
-    IconLabel.Text = icons[type] or OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15435,17010})
+    IconLabel.Text = icons[type] or '📢'
     IconLabel.Font = Enum.Font.GothamBold
     IconLabel.TextSize = 24
     IconLabel.BackgroundTransparency = 1
     IconLabel.TextColor3 = colors[type] or Config.Theme.Primary
 
-    local TextLabel = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), Notif)
+    local TextLabel = Instance.new('TextLabel', Notif)
     TextLabel.Size = UDim2.new(1, -50, 1, -10)
     TextLabel.Position = UDim2.new(0, 45, 0, 5)
     TextLabel.Text = text
@@ -174,25 +162,25 @@ end
 --// ======================== CREACIÓN DE LA INTERFAZ PREMIUM ========================
 pcall(createNotificationSystem)
 
-local ScreenGui = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,10395,11970,10605,10605,11550,7455,12285,11025}), CoreGui)
-ScreenGui.Name = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,11340,12180,11025,11445,10185,12180,10605,8085,10605,11550,12285,8400,11970,10605,11445,11025,12285,11445,9975,12390,5460})
+local ScreenGui = Instance.new('ScreenGui', CoreGui)
+ScreenGui.Name = 'UltimateMenuPremium_v4'
 ScreenGui.ResetOnSpawn = false
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local MainFrame = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), ScreenGui)
+local MainFrame = Instance.new('Frame', ScreenGui)
 MainFrame.Size = UDim2.new(0, 500, 0, 520)
 MainFrame.Position = UDim2.new(0.5, -250, 1.5, 0)
 MainFrame.BackgroundColor3 = Config.Theme.Background
 MainFrame.Active = true
 MainFrame.Draggable = true
 MainFrame.Visible = false
-local MainCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), MainFrame)
+local MainCorner = Instance.new('UICorner', MainFrame)
 MainCorner.CornerRadius = UDim.new(0, 16)
-local MainStroke = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,8715,12180,11970,11655,11235,10605}), MainFrame)
+local MainStroke = Instance.new('UIStroke', MainFrame)
 MainStroke.Color = Config.Theme.Primary
 MainStroke.Thickness = 1.5
 MainStroke.Transparency = 0.5
-local MainGradient = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7455,11970,10185,10500,11025,10605,11550,12180}), MainFrame)
+local MainGradient = Instance.new('UIGradient', MainFrame)
 MainGradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Config.Theme.Background),
     ColorSequenceKeypoint.new(0.5, Config.Theme.Surface),
@@ -200,71 +188,71 @@ MainGradient.Color = ColorSequence.new({
 })
 MainGradient.Rotation = 45
 
-local Header = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), MainFrame)
+local Header = Instance.new('Frame', MainFrame)
 Header.Size = UDim2.new(1, 0, 0, 60)
 Header.BackgroundColor3 = Config.Theme.Surface
 Header.BorderSizePixel = 0
-local HeaderCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), Header)
+local HeaderCorner = Instance.new('UICorner', Header)
 HeaderCorner.CornerRadius = UDim.new(0, 16)
-local HeaderBottomCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), Header)
+local HeaderBottomCorner = Instance.new('UICorner', Header)
 HeaderBottomCorner.CornerRadius = UDim.new(0, 0)
 
-local Title = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), Header)
+local Title = Instance.new('TextLabel', Header)
 Title.Size = UDim2.new(1, -50, 1, 0)
 Title.Position = UDim2.new(0, 20, 0, 0)
-Title.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,16905,3360,8925,7980,8820,7665,8085,6825,8820,7245,3360,8085,7245,8190,8925,3360,9030,5460,4830,5145})
+Title.Text = '⚡ ULTIMATE MENU V4.1'
 Title.Font = Enum.Font.GothamBlack
 Title.TextSize = 20
 Title.TextColor3 = Config.Theme.Text
 Title.BackgroundTransparency = 1
 Title.TextXAlignment = Enum.TextXAlignment.Left
 
-local CloseButton = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), Header)
+local CloseButton = Instance.new('TextButton', Header)
 CloseButton.Size = UDim2.new(0, 30, 0, 30)
 CloseButton.Position = UDim2.new(1, -45, 0.5, -15)
-CloseButton.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,15645})
+CloseButton.Text = '✕'
 CloseButton.TextSize = 20
 CloseButton.Font = Enum.Font.GothamBold
 CloseButton.TextColor3 = Config.Theme.Text
 CloseButton.BackgroundColor3 = Config.Theme.Error
 CloseButton.BackgroundTransparency = 0.4
-local CloseCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), CloseButton)
+local CloseCorner = Instance.new('UICorner', CloseButton)
 CloseCorner.CornerRadius = UDim.new(0, 8)
 
-local TabContainer = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), MainFrame)
+local TabContainer = Instance.new('Frame', MainFrame)
 TabContainer.Size = UDim2.new(1, -20, 0, 40)
 TabContainer.Position = UDim2.new(0, 10, 0, 70)
 TabContainer.BackgroundTransparency = 1
-local TabLayout = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7980,11025,12075,12180,7980,10185,12705,11655,12285,12180}), TabContainer)
+local TabLayout = Instance.new('UIListLayout', TabContainer)
 TabLayout.FillDirection = Enum.FillDirection.Horizontal
 TabLayout.Padding = UDim.new(0, 8)
 
-local ContentContainer = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), MainFrame)
+local ContentContainer = Instance.new('Frame', MainFrame)
 ContentContainer.Size = UDim2.new(1, -20, 1, -185)
 ContentContainer.Position = UDim2.new(0, 10, 0, 120)
 ContentContainer.BackgroundColor3 = Config.Theme.Surface
 ContentContainer.BackgroundTransparency = 0.5
-local ContentCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), ContentContainer)
+local ContentCorner = Instance.new('UICorner', ContentContainer)
 ContentCorner.CornerRadius = UDim.new(0, 12)
 
-local UserPanel = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), MainFrame)
+local UserPanel = Instance.new('Frame', MainFrame)
 UserPanel.Size = UDim2.new(1, -20, 0, 55)
 UserPanel.Position = UDim2.new(0, 10, 1, -65)
 UserPanel.BackgroundColor3 = Config.Theme.Surface
-local UserCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), UserPanel)
+local UserCorner = Instance.new('UICorner', UserPanel)
 UserCorner.CornerRadius = UDim.new(0, 12)
-local UserStroke = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,8715,12180,11970,11655,11235,10605}), UserPanel)
+local UserStroke = Instance.new('UIStroke', UserPanel)
 UserStroke.Color = Config.Theme.Primary
 UserStroke.Thickness = 1
 UserStroke.Transparency = 0.7
 
-local AvatarFrame = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), UserPanel)
+local AvatarFrame = Instance.new('Frame', UserPanel)
 AvatarFrame.Size = UDim2.new(0, 45, 0, 45)
 AvatarFrame.Position = UDim2.new(0, 5, 0.5, -22.5)
 AvatarFrame.BackgroundColor3 = Config.Theme.Primary
-local AvatarCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), AvatarFrame)
+local AvatarCorner = Instance.new('UICorner', AvatarFrame)
 AvatarCorner.CornerRadius = UDim.new(1, 0)
-local Avatar = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,11445,10185,10815,10605,7980,10185,10290,10605,11340}), AvatarFrame)
+local Avatar = Instance.new('ImageLabel', AvatarFrame)
 Avatar.Size = UDim2.new(1, -4, 1, -4)
 Avatar.Position = UDim2.new(0, 2, 0, 2)
 Avatar.BackgroundTransparency = 1
@@ -274,10 +262,10 @@ local content, isReady = Players:GetUserThumbnailAsync(
     Enum.ThumbnailSize.Size150x150
 )
 Avatar.Image = content
-local AvatarInnerCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), Avatar)
+local AvatarInnerCorner = Instance.new('UICorner', Avatar)
 AvatarInnerCorner.CornerRadius = UDim.new(1, 0)
 
-local UserName = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), UserPanel)
+local UserName = Instance.new('TextLabel', UserPanel)
 UserName.Size = UDim2.new(1, -70, 0, 20)
 UserName.Position = UDim2.new(0, 55, 0, 8)
 UserName.Text = LocalPlayer.DisplayName
@@ -286,21 +274,21 @@ UserName.TextSize = 15
 UserName.TextColor3 = Config.Theme.Text
 UserName.BackgroundTransparency = 1
 UserName.TextXAlignment = Enum.TextXAlignment.Left
-local UserId = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), UserPanel)
+local UserId = Instance.new('TextLabel', UserPanel)
 UserId.Size = UDim2.new(1, -70, 0, 18)
 UserId.Position = UDim2.new(0, 55, 0, 28)
-UserId.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6720}) .. LocalPlayer.Name
+UserId.Text = '@' .. LocalPlayer.Name
 UserId.Font = Enum.Font.Gotham
 UserId.TextSize = 12
 UserId.TextColor3 = Config.Theme.TextSecondary
 UserId.BackgroundTransparency = 1
 UserId.TextXAlignment = Enum.TextXAlignment.Left
 
-local StatusDot = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), UserPanel)
+local StatusDot = Instance.new('Frame', UserPanel)
 StatusDot.Size = UDim2.new(0, 10, 0, 10)
 StatusDot.Position = UDim2.new(1, -25, 0.5, -5)
 StatusDot.BackgroundColor3 = Config.Theme.Success
-local StatusCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), StatusDot)
+local StatusCorner = Instance.new('UICorner', StatusDot)
 StatusCorner.CornerRadius = UDim.new(1, 0)
 local pulseConnection
 pulseConnection = RunService.Heartbeat:Connect(function()
@@ -363,22 +351,22 @@ function switchTab(tabName)
     activeTab = tabName
 end
 local function createTab(name, icon)
-    local content = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7035,10185,11550,12390,10185,12075,7455,11970,11655,12285,11760}), ContentContainer)
+    local content = Instance.new('CanvasGroup', ContentContainer)
     content.Size = UDim2.fromScale(1, 1)
     content.BackgroundTransparency = 1
     content.Visible = false
     content.GroupTransparency = 1
     -- [FIX] Resized buttons to fit 5 tabs
-    local button = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), TabContainer)
+    local button = Instance.new('TextButton', TabContainer)
     button.Size = UDim2.new(0, 89, 1, 0)
-    button.Text = icon .. OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360}) .. name
+    button.Text = icon .. ' ' .. name
     button.Font = Enum.Font.GothamBold
     button.TextSize = 14
     button.TextColor3 = Config.Theme.TextSecondary
     button.BackgroundColor3 = Config.Theme.Surface
-    local btnCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), button)
+    local btnCorner = Instance.new('UICorner', button)
     btnCorner.CornerRadius = UDim.new(0, 8)
-    local btnStroke = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,8715,12180,11970,11655,11235,10605}), button)
+    local btnStroke = Instance.new('UIStroke', button)
     btnStroke.Color = Config.Theme.Primary
     btnStroke.Thickness = 0
     btnStroke.Transparency = 1
@@ -389,13 +377,13 @@ local function createTab(name, icon)
     return content
 end
 
-local bringTab = createTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,11970,11025,11550,10815}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,14910,18375}))
-local tpTab = createTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,11340,10605,11760,11655,11970,12180}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,16170,13440}))
-local auraTab = createTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,12285,11970,10185}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,15540,25095,19320,15015}))
-local miscTab = createTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11025,12075,10395}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,17640}))
-local settingsTab = createTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,10605,12180,12180,11025,11550,10815,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,16065,25095,19320,15015}))
+local bringTab = createTab('Bring', '🎯')
+local tpTab = createTab('Teleport', '🚀')
+local auraTab = createTab('Aura', '⚔️')
+local miscTab = createTab('Misc', '✨')
+local settingsTab = createTab('Settings', '⚙️')
 local function createInput(parent, placeholder, yPos)
-    local search = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,11655,12600}), parent)
+    local search = Instance.new('TextBox', parent)
     search.Size = UDim2.new(1, -20, 0, 40)
     search.Position = UDim2.new(0, 10, 0, yPos)
     search.PlaceholderText = placeholder
@@ -404,68 +392,68 @@ local function createInput(parent, placeholder, yPos)
     search.TextColor3 = Config.Theme.Text
     search.BackgroundColor3 = Config.Theme.Background
     search.PlaceholderColor3 = Config.Theme.TextSecondary
-    local corner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), search)
+    local corner = Instance.new('UICorner', search)
     corner.CornerRadius = UDim.new(0, 10)
     return search
 end
 local function createItemContainer(parent)
-    local scroll = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,10395,11970,11655,11340,11340,11025,11550,10815,7350,11970,10185,11445,10605}), parent)
+    local scroll = Instance.new('ScrollingFrame', parent)
     scroll.Size = UDim2.new(1, 0, 1, -105)
     scroll.Position = UDim2.new(0, 0, 0, 60)
     scroll.BackgroundTransparency = 1
     scroll.BorderSizePixel = 0
     scroll.ScrollBarThickness = 5
     scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-    local layout = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7980,11025,12075,12180,7980,10185,12705,11655,12285,12180}), scroll)
+    local layout = Instance.new('UIListLayout', scroll)
     layout.Padding = UDim.new(0, 8)
     layout.SortOrder = Enum.SortOrder.Name
     return scroll
 end
 
 --// ======================== CONTENIDO DE PESTAÑAS ========================
-local BringSearch = createInput(bringTab, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,14805,3360,6930,12285,12075,10395,10185,11970,3360,11025,12180,10605,11445,12075,4830,4830,4830}), 10)
+local BringSearch = createInput(bringTab, '🔍 Buscar items...', 10)
 local BringContainer = createItemContainer(bringTab)
-local BringAllBtn = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), bringTab)
+local BringAllBtn = Instance.new('TextButton', bringTab)
 BringAllBtn.Size = UDim2.new(1, -20, 0, 45)
 BringAllBtn.Position = UDim2.new(0, 10, 1, -45)
-BringAllBtn.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,16905,3360,8820,8610,6825,7245,8610,3360,8820,8295,7140,8295,8715,3360,7980,8295,8715,3360,9030,7665,8715,7665,6930,7980,7245,8715})
+BringAllBtn.Text = '⚡ TRAER TODOS LOS VISIBLES'
 BringAllBtn.Font = Enum.Font.GothamBold
 BringAllBtn.TextSize = 15
 BringAllBtn.TextColor3 = Config.Theme.Text
 BringAllBtn.BackgroundColor3 = Config.Theme.Primary
 BringAllBtn.Visible = false
-local BringAllCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), BringAllBtn)
+local BringAllCorner = Instance.new('UICorner', BringAllBtn)
 BringAllCorner.CornerRadius = UDim.new(0, 10)
 
-local TpSearch = createInput(tpTab, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,14805,3360,6930,12285,12075,10395,10185,11970,3360,10500,10605,12075,12180,11025,11550,11655,4830,4830,4830}), 10)
+local TpSearch = createInput(tpTab, '🔍 Buscar destino...', 10)
 local TpContainer = createItemContainer(tpTab)
-local ScrapperBtn = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), tpTab)
+local ScrapperBtn = Instance.new('TextButton', tpTab)
 ScrapperBtn.Size = UDim2.new(1, -20, 0, 45)
 ScrapperBtn.Position = UDim2.new(0, 10, 1, -45)
-ScrapperBtn.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15015,18165,3360,8820,10605,11340,10605,11760,11655,11970,12180,3360,10185,11340,3360,8715,10395,11970,10185,11760,11760,10605,11970})
+ScrapperBtn.Text = '🏭 Teleport al Scrapper'
 ScrapperBtn.Font = Enum.Font.GothamBold
 ScrapperBtn.TextSize = 16
 ScrapperBtn.TextColor3 = Config.Theme.Text
 ScrapperBtn.BackgroundColor3 = Config.Theme.Secondary
-local ScrapperCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), ScrapperBtn)
+local ScrapperCorner = Instance.new('UICorner', ScrapperBtn)
 ScrapperCorner.CornerRadius = UDim.new(0, 10)
 
-local AuraToggle = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), auraTab)
+local AuraToggle = Instance.new('TextButton', auraTab)
 AuraToggle.Size = UDim2.new(1, -20, 0, 45)
 AuraToggle.Position = UDim2.new(0, 10, 0, 10)
-AuraToggle.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,18900,3360,6825,8925,8610,6825,3360,7140,7245,8715,6825,7035,8820,7665,9030,6825,7140,6825})
+AuraToggle.Text = '🔴 AURA DESACTIVADA'
 AuraToggle.Font = Enum.Font.GothamBold
 AuraToggle.TextSize = 16
 AuraToggle.TextColor3 = Config.Theme.Text
 AuraToggle.BackgroundColor3 = Config.Theme.Error
-local AuraToggleCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), AuraToggle)
+local AuraToggleCorner = Instance.new('UICorner', AuraToggle)
 AuraToggleCorner.CornerRadius = UDim.new(0, 10)
 local function createAuraInput(parent, yPos, labelText, defaultValue)
-    local frame = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), parent)
+    local frame = Instance.new('Frame', parent)
     frame.Size = UDim2.new(1, -20, 0, 40)
     frame.Position = UDim2.new(0, 10, 0, yPos)
     frame.BackgroundTransparency = 1
-    local label = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), frame)
+    local label = Instance.new('TextLabel', frame)
     label.Size = UDim2.new(0.6, 0, 1, 0)
     label.Text = labelText
     label.Font = Enum.Font.Gotham
@@ -473,7 +461,7 @@ local function createAuraInput(parent, yPos, labelText, defaultValue)
     label.TextColor3 = Config.Theme.TextSecondary
     label.BackgroundTransparency = 1
     label.TextXAlignment = Enum.TextXAlignment.Left
-    local input = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,11655,12600}), frame)
+    local input = Instance.new('TextBox', frame)
     input.Size = UDim2.new(0.4, -10, 1, 0)
     input.Position = UDim2.new(0.6, 10, 0, 0)
     input.Text = tostring(defaultValue)
@@ -481,37 +469,37 @@ local function createAuraInput(parent, yPos, labelText, defaultValue)
     input.TextSize = 14
     input.TextColor3 = Config.Theme.Text
     input.BackgroundColor3 = Config.Theme.Background
-    local c = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), input)
+    local c = Instance.new('UICorner', input)
     c.CornerRadius = UDim.new(0, 8)
     return input
 end
 
 local RangeInput =
-    createAuraInput(auraTab, 65, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15435,15015,3360,8610,10185,11550,10815,11655,3360,4200,12075,12180,12285,10500,12075,4305}), Config.KillAura.Range)
+    createAuraInput(auraTab, 65, '📏 Rango (studs)', Config.KillAura.Range)
 local SpeedInput = createAuraInput(
     auraTab,
     110,
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16170,16905,3360,9030,10605,11340,11655,10395,11025,10500,10185,10500,3360,10500,10605,3360,6825,12180,10185,11865,12285,10605,3360,4200,12075,4305}),
+    '⚡ Velocidad de Ataque (s)',
     Config.KillAura.Interval
 )
 
 -- [MODIFICADO] Se crean los inputs para el arma y el argumento.
-local WeaponInput = createInput(auraTab, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15855,16905,25095,19320,15015,3360,8190,11655,11445,10290,11970,10605,3360,10500,10605,11340,3360,6825,11970,11445,10185,4830,4830,4830}), 155)
+local WeaponInput = createInput(auraTab, '🗡️ Nombre del Arma...', 155)
 WeaponInput.Text = Config.KillAura.WeaponName
 
 local ArgInput =
-    createInput(auraTab, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,15225,3360,6825,11970,10815,12285,11445,10605,11550,12180,11655,3360,10500,10605,11340,3360,6825,11970,11445,10185,3360,4200,6825,12390,10185,11550,12810,10185,10500,11655,4305,4830,4830,4830}), 205)
+    createInput(auraTab, '🔑 Argumento del Arma (Avanzado)...', 205)
 ArgInput.Text = Config.KillAura.StaticArg3
 
-local WeaponApply = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), auraTab)
+local WeaponApply = Instance.new('TextButton', auraTab)
 WeaponApply.Size = UDim2.new(1, -20, 0, 40)
 WeaponApply.Position = UDim2.new(0, 10, 0, 255)
-WeaponApply.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,13965,3360,6825,8400,7980,7665,7035,6825,8610,3360,9345,3360,7455,8925,6825,8610,7140,6825,8610,3360,6825,8610,8085,6825})
+WeaponApply.Text = '✅ APLICAR Y GUARDAR ARMA'
 WeaponApply.Font = Enum.Font.GothamBold
 WeaponApply.TextSize = 14
 WeaponApply.TextColor3 = Config.Theme.Text
 WeaponApply.BackgroundColor3 = Config.Theme.Success
-local wac = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), WeaponApply)
+local wac = Instance.new('UICorner', WeaponApply)
 wac.CornerRadius = UDim.new(0, 8)
 
 local function createSettingToggle(
@@ -524,7 +512,7 @@ local function createSettingToggle(
     colorOn,
     colorOff
 )
-    local button = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), parent)
+    local button = Instance.new('TextButton', parent)
     button.Size = UDim2.new(1, -20, 0, 45)
     button.Position = UDim2.new(0, 10, 0, yPos)
     button.Font = Enum.Font.GothamBold
@@ -538,7 +526,7 @@ local function createSettingToggle(
         configTable[configKey] = not configTable[configKey]
         update()
     end)
-    local corner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), button)
+    local corner = Instance.new('UICorner', button)
     corner.CornerRadius = UDim.new(0, 10)
     update()
     return button
@@ -546,58 +534,58 @@ end
 createSettingToggle(
     settingsTab,
     10,
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,15540,3360,8190,11655,12180,11025,10710,11025,10395,10185,10395,11025,11655,11550,10605,12075,6090,3360,8295,8190}),
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,15540,3360,8190,11655,12180,11025,10710,11025,10395,10185,10395,11025,11655,11550,10605,12075,6090,3360,8295,7350,7350}),
+    '🔔 Notificaciones: ON',
+    '🔔 Notificaciones: OFF',
     Config.UI,
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7245,11550,10185,10290,11340,10605,8190,11655,12180,11025,10710,11025,10395,10185,12180,11025,11655,11550,12075}),
+    'EnableNotifications',
     Config.Theme.Success,
     Config.Theme.Error
 )
 createSettingToggle(
     settingsTab,
     65,
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,17640,3360,7245,10710,10605,10395,12180,11655,12075,3360,9030,11025,12075,12285,10185,11340,10605,12075,6090,3360,8295,8190}),
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,16380,17640,3360,7245,10710,10605,10395,12180,11655,12075,3360,9030,11025,12075,12285,10185,11340,10605,12075,6090,3360,8295,7350,7350}),
+    '✨ Efectos Visuales: ON',
+    '✨ Efectos Visuales: OFF',
     Config.KillAura,
-    OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({9030,11025,12075,12285,10185,11340,7245,10710,10710,10605,10395,12180,12075}),
+    'VisualEffects',
     Config.Theme.Success,
     Config.Theme.Error
 )
-local DiscordBtn = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), settingsTab)
+local DiscordBtn = Instance.new('TextButton', settingsTab)
 DiscordBtn.Size = UDim2.new(1, -20, 0, 45)
 DiscordBtn.Position = UDim2.new(0, 10, 0, 120)
-DiscordBtn.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15330,18060,3360,8925,11550,11025,11970,12075,10605,3360,10185,11340,3360,7140,11025,12075,10395,11655,11970,10500})
+DiscordBtn.Text = '💬 Unirse al Discord'
 DiscordBtn.Font = Enum.Font.GothamBold
 DiscordBtn.TextSize = 15
 DiscordBtn.TextColor3 = Config.Theme.Text
 DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-local DiscordCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), DiscordBtn)
+local DiscordCorner = Instance.new('UICorner', DiscordBtn)
 DiscordCorner.CornerRadius = UDim.new(0, 10)
 
 --// ======================== LÓGICA DE FUNCIONALIDAD ========================
 local BringButtons = {}
 local TpButtons = {}
 local function getObjectPosition(object)
-    if object:IsA(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11655,10500,10605,11340})) and object.PrimaryPart then
+    if object:IsA('Model') and object.PrimaryPart then
         return object.PrimaryPart.CFrame
-    elseif object:IsA(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,10185,12075,10605,8400,10185,11970,12180})) then
+    elseif object:IsA('BasePart') then
         return object.CFrame
     end
     return nil
 end
 local function moveObject(object, cframe)
-    if object:IsA(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11655,10500,10605,11340})) and object.PrimaryPart then
+    if object:IsA('Model') and object.PrimaryPart then
         object:SetPrimaryPartCFrame(cframe)
-    elseif object:IsA(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,10185,12075,10605,8400,10185,11970,12180})) then
+    elseif object:IsA('BasePart') then
         object.CFrame = cframe
     end
 end
 
 local function bringItem(targetItem)
     local char = LocalPlayer.Character
-    local rootPart = char and char:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500,8610,11655,11655,12180,8400,10185,11970,12180}))
+    local rootPart = char and char:FindFirstChild('HumanoidRootPart')
     if not rootPart then
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8400,10605,11970,12075,11655,11550,10185,11130,10605,3360,11550,11655,3360,10605,11550,10395,11655,11550,12180,11970,10185,10500,11655,4830}))
+        notify('error', 'Personaje no encontrado.')
         return
     end
     local originalCFrame = getObjectPosition(targetItem)
@@ -606,14 +594,14 @@ local function bringItem(targetItem)
     end
 
     moveObject(targetItem, rootPart.CFrame * CFrame.new(0, 3, -5))
-    notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,11970,10185,12705,10605,11550,10500,11655,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12180,10185,11970,10815,10605,12180,7665,12180,10605,11445,4830,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({4830,4830,4830}))
+    notify('success', "Trayendo '" .. targetItem.Name .. "'...")
 
-    -- [FIX] Fire events to OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12285,11550,12075,12180,12285,10395,11235}) the item by simulating a quick grab and release
+    -- [FIX] Fire events to "unstuck" the item by simulating a quick grab and release
     pcall(function()
-        local startDragEvent = ReplicatedStorage:WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,11445,11655,12180,10605,7245,12390,10605,11550,12180,12075}))
-            :WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,11865,12285,10605,12075,12180,8715,12180,10185,11970,12180,7140,11970,10185,10815,10815,11025,11550,10815,7665,12180,10605,11445}))
-        local stopDragEvent = ReplicatedStorage:WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,11445,11655,12180,10605,7245,12390,10605,11550,12180,12075}))
-            :WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,12180,11655,11760,7140,11970,10185,10815,10815,11025,11550,10815,7665,12180,10605,11445}))
+        local startDragEvent = ReplicatedStorage:WaitForChild('RemoteEvents')
+            :WaitForChild('RequestStartDraggingItem')
+        local stopDragEvent = ReplicatedStorage:WaitForChild('RemoteEvents')
+            :WaitForChild('StopDraggingItem')
         startDragEvent:FireServer(targetItem)
         task.wait(0.1) -- Small delay to ensure server processes the start event
         stopDragEvent:FireServer(targetItem)
@@ -630,21 +618,21 @@ local function bringItem(targetItem)
                 < 2
         then
             notify(
-                OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12495,10185,11970,11550,11025,11550,10815}),
-                OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11550,12180,11025,4725,7035,10920,10605,10185,12180,3360,10500,10605,12180,10605,10395,12180,10185,10500,11655,3360,10605,11550,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12180,10185,11970,10815,10605,12180,7665,12180,10605,11445,4830,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3465})
+                'warning',
+                "Anti-Cheat detectado en '" .. targetItem.Name .. "'!"
             )
         end
     end)
 end
 local function teleportToItem(targetItem)
     local char = LocalPlayer.Character
-    local rootPart = char and char:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500,8610,11655,11655,12180,8400,10185,11970,12180}))
+    local rootPart = char and char:FindFirstChild('HumanoidRootPart')
     local itemPos = getObjectPosition(targetItem)
     if rootPart and itemPos then
         rootPart.CFrame = itemPos * CFrame.new(0, 4, 0)
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,11340,10605,12180,11970,10185,11550,12075,11760,11655,11970,12180,10185,10500,11655,3360,10185,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12180,10185,11970,10815,10605,12180,7665,12180,10605,11445,4830,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}))
+        notify('success', "Teletransportado a '" .. targetItem.Name .. "'")
     else
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8190,11655,3360,12075,10605,3360,11760,12285,10500,11655,3360,12180,10605,11340,10605,12180,11970,10185,11550,12075,11760,11655,11970,12180,10185,11970,4830}))
+        notify('error', 'No se pudo teletransportar.')
     end
 end
 
@@ -658,12 +646,12 @@ local function createSlider(
     defaultVal,
     property
 )
-    local frame = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), parent)
+    local frame = Instance.new('Frame', parent)
     frame.Size = UDim2.new(1, -20, 0, 60)
     frame.Position = UDim2.new(0, 10, 0, yPos)
     frame.BackgroundTransparency = 1
 
-    local label = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,7980,10185,10290,10605,11340}), frame)
+    local label = Instance.new('TextLabel', frame)
     label.Size = UDim2.new(0.7, 0, 0, 25)
     label.Position = UDim2.new(0, 0, 0, 0)
     label.Font = Enum.Font.GothamBold
@@ -672,40 +660,40 @@ local function createSlider(
     label.BackgroundTransparency = 1
     label.TextXAlignment = Enum.TextXAlignment.Left
 
-    local resetButton = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), frame)
+    local resetButton = Instance.new('TextButton', frame)
     resetButton.Size = UDim2.new(0.3, -10, 0, 25)
     resetButton.Position = UDim2.new(0.7, 10, 0, 0)
-    resetButton.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,12075,10605,12180})
+    resetButton.Text = 'Reset'
     resetButton.Font = Enum.Font.Gotham
     resetButton.TextSize = 13
     resetButton.TextColor3 = Config.Theme.Text
     resetButton.BackgroundColor3 = Config.Theme.Secondary
-    local resetCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), resetButton)
+    local resetCorner = Instance.new('UICorner', resetButton)
     resetCorner.CornerRadius = UDim.new(0, 6)
 
-    local sliderBg = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), frame)
+    local sliderBg = Instance.new('Frame', frame)
     sliderBg.Size = UDim2.new(1, 0, 0, 8)
     sliderBg.Position = UDim2.new(0, 0, 0, 35)
     sliderBg.BackgroundColor3 = Config.Theme.Background
-    local bgCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), sliderBg)
+    local bgCorner = Instance.new('UICorner', sliderBg)
     bgCorner.CornerRadius = UDim.new(1, 0)
 
-    local sliderFill = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7350,11970,10185,11445,10605}), sliderBg)
+    local sliderFill = Instance.new('Frame', sliderBg)
     sliderFill.Size = UDim2.new(0, 0, 1, 0)
     sliderFill.BackgroundColor3 = Config.Theme.Primary
-    local fillCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), sliderFill)
+    local fillCorner = Instance.new('UICorner', sliderFill)
     fillCorner.CornerRadius = UDim.new(1, 0)
 
     local humanoid
     local function setHumanoid(char)
-        humanoid = char and char:FindFirstChildOfClass(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500}))
+        humanoid = char and char:FindFirstChildOfClass('Humanoid')
     end
     setHumanoid(LocalPlayer.Character)
 
     local function updateProperty(value)
         if humanoid then
             humanoid[property] = value
-            label.Text = string.format(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3885,12075,6090,3360,3885,4830,5040,10710}), title, value)
+            label.Text = string.format('%s: %.0f', title, value)
         end
     end
 
@@ -767,20 +755,20 @@ local function createSlider(
 end
 
 -- [NEW] Add content to Misc tab
-createSlider(miscTab, 10, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15015,13755,3360,9135,10185,11340,11235,8715,11760,10605,10605,10500}), 16, 100, 16, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({9135,10185,11340,11235,8715,11760,10605,10605,10500}))
-createSlider(miscTab, 80, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,17220,19320,3360,7770,12285,11445,11760,8400,11655,12495,10605,11970}), 50, 200, 50, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7770,12285,11445,11760,8400,11655,12495,10605,11970}))
+createSlider(miscTab, 10, '🏃 WalkSpeed', 16, 100, 16, 'WalkSpeed')
+createSlider(miscTab, 80, '🤸 JumpPower', 50, 200, 50, 'JumpPower')
 
 local function createItemButton(item, text, parent, callback, type)
-    local btn = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), parent)
+    local btn = Instance.new('TextButton', parent)
     btn.Name = text
     btn.Size = UDim2.new(1, 0, 0, 40)
-    btn.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,3360}) .. (type == OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10290,11970,11025,11550,10815}) and OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,14910,18375,3360}) or OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,16170,13440,3360})) .. text
+    btn.Text = '  ' .. (type == 'bring' and '🎯 ' or '🚀 ') .. text
     btn.Font = Enum.Font.Gotham
     btn.TextSize = 14
     btn.TextColor3 = Config.Theme.Text
     btn.BackgroundColor3 = Config.Theme.Surface
     btn.TextXAlignment = Enum.TextXAlignment.Left
-    local btnCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), btn)
+    local btnCorner = Instance.new('UICorner', btn)
     btnCorner.CornerRadius = UDim.new(0, 8)
     btn.MouseButton1Click:Connect(function()
         callback(item)
@@ -792,7 +780,7 @@ local function setupSearch(searchBox, buttonDict, allButton)
         local query = string.lower(searchBox.Text)
         local visible = 0
         for item, btn in pairs(buttonDict) do
-            local isVisible = (query == OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}))
+            local isVisible = (query == '')
                 or string.find(string.lower(item.Name), query, 1, true)
             btn.Visible = isVisible
             if isVisible then
@@ -800,14 +788,14 @@ local function setupSearch(searchBox, buttonDict, allButton)
             end
         end
         if allButton then
-            allButton.Visible = (query ~= OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}) and visible > 0)
+            allButton.Visible = (query ~= '' and visible > 0)
         end
     end
 end
 local updateBringSearch = setupSearch(BringSearch, BringButtons, BringAllBtn)
 local updateTpSearch = setupSearch(TpSearch, TpButtons, nil)
-BringSearch:GetPropertyChangedSignal(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180})):Connect(updateBringSearch)
-TpSearch:GetPropertyChangedSignal(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180})):Connect(updateTpSearch)
+BringSearch:GetPropertyChangedSignal('Text'):Connect(updateBringSearch)
+TpSearch:GetPropertyChangedSignal('Text'):Connect(updateTpSearch)
 
 local function onItemAdded(item)
     pcall(function()
@@ -819,10 +807,10 @@ local function onItemAdded(item)
             item.Name,
             BringContainer,
             bringItem,
-            OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10290,11970,11025,11550,10815})
+            'bring'
         )
         TpButtons[item] =
-            createItemButton(item, item.Name, TpContainer, teleportToItem, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12180,11760}))
+            createItemButton(item, item.Name, TpContainer, teleportToItem, 'tp')
         updateBringSearch()
         updateTpSearch()
     end)
@@ -851,46 +839,46 @@ BringAllBtn.MouseButton1Click:Connect(function()
             task.wait(0.1)
         end
     end
-    notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,11970,10185,12705,10605,11550,10500,11655,3360}) .. count .. OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,11025,12180,10605,11445,12075,4830}))
+    notify('success', 'Trayendo ' .. count .. ' items.')
 end)
 ScrapperBtn.MouseButton1Click:Connect(function()
     pcall(function()
         local char = LocalPlayer.Character
-        local root = char and char:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500,8610,11655,11655,12180,8400,10185,11970,12180}))
+        local root = char and char:FindFirstChild('HumanoidRootPart')
         local target = Workspace.Map.Campground.Scrapper.DashedLine
         if root and target then
             root.CFrame = target.CFrame * CFrame.new(0, 5, 0)
-            notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,11340,10605,12180,11970,10185,11550,12075,11760,11655,11970,12180,10185,10500,11655,3360,10185,11340,3360,8715,10395,11970,10185,11760,11760,10605,11970,4830}))
+            notify('success', 'Teletransportado al Scrapper.')
         else
-            notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8715,10395,11970,10185,11760,11760,10605,11970,3360,11550,11655,3360,10605,11550,10395,11655,11550,12180,11970,10185,10500,11655,4830}))
+            notify('error', 'Scrapper no encontrado.')
         end
     end)
 end)
 AuraToggle.MouseButton1Click:Connect(function()
     Config.KillAura.IsEnabled = not Config.KillAura.IsEnabled
     local enabled = Config.KillAura.IsEnabled
-    AuraToggle.Text = enabled and OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,16695,17010,3360,6825,8925,8610,6825,3360,6825,7035,8820,7665,9030,6825,7140,6825})
-        or OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,18900,3360,6825,8925,8610,6825,3360,7140,7245,8715,6825,7035,8820,7665,9030,6825,7140,6825})
+    AuraToggle.Text = enabled and '🟢 AURA ACTIVADA'
+        or '🔴 AURA DESACTIVADA'
     AuraToggle.BackgroundColor3 = enabled and Config.Theme.Success
         or Config.Theme.Error
     if enabled then
-        local i = LocalPlayer:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,11550,12390,10605,11550,12180,11655,11970,12705}))
+        local i = LocalPlayer:FindFirstChild('Inventory')
         if not (i and i:FindFirstChild(Config.KillAura.WeaponName)) then
             Config.KillAura.IsEnabled = false
-            AuraToggle.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,18900,3360,6825,8925,8610,6825,3360,7140,7245,8715,6825,7035,8820,7665,9030,6825,7140,6825})
+            AuraToggle.Text = '🔴 AURA DESACTIVADA'
             AuraToggle.BackgroundColor3 = Config.Theme.Error
             notify(
-                OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}),
-                OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11970,11445,10185,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,7035,11655,11550,10710,11025,10815,4830,7875,11025,11340,11340,6825,12285,11970,10185,4830,9135,10605,10185,11760,11655,11550,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,11550,11655,3360,10605,11550,10395,11655,11550,12180,11970,10185,10500,10185,4830})
+                'error',
+                "Arma '" .. Config.KillAura.WeaponName .. "' no encontrada."
             )
             return
         end
         notify(
-            OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}),
-            OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,12285,11970,10185,3360,10185,10395,12180,11025,12390,10185,10500,10185,3360,10395,11655,11550,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,7035,11655,11550,10710,11025,10815,4830,7875,11025,11340,11340,6825,12285,11970,10185,4830,9135,10605,10185,11760,11655,11550,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({})
+            'success',
+            "Aura activada con '" .. Config.KillAura.WeaponName .. "'"
         )
     else
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({11025,11550,10710,11655}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,12285,11970,10185,3360,10500,10605,12075,10185,10395,12180,11025,12390,10185,10500,10185,4830}))
+        notify('info', 'Aura desactivada.')
     end
 end)
 local function handleInput(inputBox, configKey, name, isNumeric)
@@ -901,72 +889,72 @@ local function handleInput(inputBox, configKey, name, isNumeric)
         local text = inputBox.Text
         local value = isNumeric and tonumber(text)
         if isNumeric and (not value or value <= 0) then
-            notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({9030,10185,11340,11655,11970,3360,11025,11550,12390,20475,16905,11340,11025,10500,11655,3360,11760,10185,11970,10185,3360}) .. name)
+            notify('error', 'Valor inválido para ' .. name)
             inputBox.Text = tostring(Config.KillAura[configKey])
             return
         end
         Config.KillAura[configKey] = isNumeric and value or text
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), name .. OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,10185,10395,12180,12285,10185,11340,11025,12810,10185,10500,11655,3360,10185,3360}) .. text)
+        notify('success', name .. ' actualizado a ' .. text)
     end)
 end
-handleInput(RangeInput, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10185,11550,10815,10605}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10185,11550,10815,11655}), true)
-handleInput(SpeedInput, OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,11550,12180,10605,11970,12390,10185,11340}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({9030,10605,11340,11655,10395,11025,10500,10185,10500}), true)
+handleInput(RangeInput, 'Range', 'Rango', true)
+handleInput(SpeedInput, 'Interval', 'Velocidad', true)
 
 -- [MODIFICADO] El botón ahora guarda el nombre del arma y el nuevo argumento.
 WeaponApply.MouseButton1Click:Connect(function()
     local weaponName = WeaponInput.Text
     local weaponArg = ArgInput.Text
 
-    if not weaponName or weaponName == OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}) then
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7245,11340,3360,11550,11655,11445,10290,11970,10605,3360,10500,10605,11340,3360,10185,11970,11445,10185,3360,11550,11655,3360,11760,12285,10605,10500,10605,3360,10605,12075,12180,10185,11970,3360,12390,10185,10395,20475,18165,11655,4830}))
+    if not weaponName or weaponName == '' then
+        notify('error', 'El nombre del arma no puede estar vacío.')
         return
     end
 
-    local i = LocalPlayer:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,11550,12390,10605,11550,12180,11655,11970,12705}))
+    local i = LocalPlayer:FindFirstChild('Inventory')
     if i and i:FindFirstChild(weaponName) then
         Config.KillAura.WeaponName = weaponName
         Config.KillAura.StaticArg3 = weaponArg
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11970,11445,10185,3360,10185,10395,12180,12285,10185,11340,11025,12810,10185,10500,10185,3360,10185,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12495,10605,10185,11760,11655,11550,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}))
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({11025,11550,10710,11655}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11970,10815,12285,11445,10605,11550,12180,11655,3360,10185,10395,12180,12285,10185,11340,11025,12810,10185,10500,11655,3360,10185,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12495,10605,10185,11760,11655,11550,6825,11970,10815,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({}))
+        notify('success', "Arma actualizada a '" .. weaponName .. "'")
+        notify('info', "Argumento actualizado a '" .. weaponArg .. "'")
     else
         notify(
-            OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({10605,11970,11970,11655,11970}),
-            OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,11970,11445,10185,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,4830,4830,3360,12495,10605,10185,11760,11655,11550,8190,10185,11445,10605,3360,4830,4830,3360})OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,11550,11655,3360,10605,11550,10395,11655,11550,12180,11970,10185,10500,10185,3360,10605,11550,3360,10605,11340,3360,11025,11550,12390,10605,11550,12180,10185,11970,11025,11655,4830})
+            'error',
+            "Arma '" .. weaponName .. "' no encontrada en el inventario."
         )
     end
 end)
 
 DiscordBtn.MouseButton1Click:Connect(function()
     pcall(function()
-        setclipboard(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8190,11655,3360,10500,11025,12075,11760,11655,11550,11025,10290,11340,10605}))
+        setclipboard('No disponible')
     end)
-    notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({20370,16905,8400,11970,20475,18795,12600,11025,11445,10185,11445,10605,11550,12180,10605,3360,10605,11550,11340,10185,10395,10605,3360,10500,10605,3360,7140,11025,12075,10395,11655,11970,10500,3465}))
+    notify('success', '¡Próximamente enlace de Discord!')
 end)
 
 task.spawn(function()
-    local remoteEvent = ReplicatedStorage:WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8610,10605,11445,11655,12180,10605,7245,12390,10605,11550,12180,12075}))
-        :WaitForChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,11655,11655,11340,7140,10185,11445,10185,10815,10605,8295,10290,11130,10605,10395,12180}))
+    local remoteEvent = ReplicatedStorage:WaitForChild('RemoteEvents')
+        :WaitForChild('ToolDamageObject')
     while true do
         task.wait(Config.KillAura.Interval)
         if Config.KillAura.IsEnabled then
             local char = LocalPlayer.Character
-            local root = char and char:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500,8610,11655,11655,12180,8400,10185,11970,12180}))
-            local inv = LocalPlayer:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7665,11550,12390,10605,11550,12180,11655,11970,12705}))
+            local root = char and char:FindFirstChild('HumanoidRootPart')
+            local inv = LocalPlayer:FindFirstChild('Inventory')
             local weapon = inv
                 and inv:FindFirstChild(Config.KillAura.WeaponName)
             if not (root and weapon) then
                 if Config.KillAura.IsEnabled then
                     Config.KillAura.IsEnabled = false
-                    AuraToggle.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({25200,16695,15540,18900,3360,6825,8925,8610,6825,3360,7140,7245,8715,6825,7035,8820,7665,9030,6825,7140,6825})
+                    AuraToggle.Text = '🔴 AURA DESACTIVADA'
                     AuraToggle.BackgroundColor3 = Config.Theme.Error
-                    notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12495,10185,11970,11550,11025,11550,10815}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6825,12285,11970,10185,3360,10500,10605,12075,10185,10395,12180,11025,12390,10185,10500,10185,4620,3360,10185,11970,11445,10185,3360,11760,10605,11970,10500,11025,10500,10185,4830}))
+                    notify('warning', 'Aura desactivada, arma perdida.')
                 end
                 continue
             end
             for _, target in ipairs(Config.KillAura.TargetFolder:GetChildren()) do
-                if target:IsA(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11655,10500,10605,11340})) and target ~= char then
-                    local h = target:FindFirstChildOfClass(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500}))
-                    local tr = target:FindFirstChild(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7560,12285,11445,10185,11550,11655,11025,10500,8610,11655,11655,12180,8400,10185,11970,12180}))
+                if target:IsA('Model') and target ~= char then
+                    local h = target:FindFirstChildOfClass('Humanoid')
+                    local tr = target:FindFirstChild('HumanoidRootPart')
                     if
                         h
                         and tr
@@ -1014,28 +1002,28 @@ CloseButton.MouseButton1Click:Connect(toggleMenu)
 --// ======================== GESTIÓN DE ENTRADA (PC & MÓVIL) ========================
 if UserInputService.TouchEnabled then
     -- Es un dispositivo móvil, crear un botón dedicado para abrir/cerrar el menú.
-    local MobileToggleButton = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}), ScreenGui)
-    MobileToggleButton.Name = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8085,11655,10290,11025,11340,10605,8820,11655,10815,10815,11340,10605})
+    local MobileToggleButton = Instance.new('TextButton', ScreenGui)
+    MobileToggleButton.Name = "MobileToggle"
     MobileToggleButton.Size = UDim2.new(0, 60, 0, 60)
     MobileToggleButton.Position = UDim2.new(1, -75, 1, -75) -- Esquina inferior derecha
     MobileToggleButton.ZIndex = 10
-    MobileToggleButton.Text = OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({23730,15960,18480})
+    MobileToggleButton.Text = "☰"
     MobileToggleButton.Font = Enum.Font.GothamBold
     MobileToggleButton.TextSize = 32
     MobileToggleButton.TextColor3 = Config.Theme.Text
     MobileToggleButton.BackgroundColor3 = Config.Theme.Primary
     MobileToggleButton.AutoButtonColor = false
 
-    local mtCorner = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,7035,11655,11970,11550,10605,11970}), MobileToggleButton)
+    local mtCorner = Instance.new("UICorner", MobileToggleButton)
     mtCorner.CornerRadius = UDim.new(0, 12)
-    local mtStroke = Instance.new(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8925,7665,8715,12180,11970,11655,11235,10605}), MobileToggleButton)
+    local mtStroke = Instance.new("UIStroke", MobileToggleButton)
     mtStroke.Color = Config.Theme.Text
     mtStroke.Thickness = 1.5
 
     -- Conectar el botón móvil a la función de abrir/cerrar
     MobileToggleButton.MouseButton1Click:Connect(toggleMenu)
 else
-    -- Es PC, usar la tecla OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7455}) como antes.
+    -- Es PC, usar la tecla 'G' como antes.
     UserInputService.InputBegan:Connect(function(input, gp)
         if gp or UserInputService:GetFocusedTextBox() then
             return
@@ -1047,13 +1035,13 @@ else
 end
 
 local function Initialize()
-    notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,11025,10605,11550,12390,10605,11550,11025,10500,11655,4620,3360}) .. LocalPlayer.DisplayName .. OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3465}))
+    notify('success', 'Bienvenido, ' .. LocalPlayer.DisplayName .. '!')
     
     -- Muestra la notificación de cómo abrir el menú según la plataforma
     if UserInputService.TouchEnabled then
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({11025,11550,10710,11655}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8820,11655,10395,10185,3360,10605,11340,3360,10290,11655,12180,20475,18795,11550,3360,23730,15960,18480,3360,11760,10185,11970,10185,3360,10185,10290,11970,11025,11970,3360,10605,11340,3360,11445,10605,11550,20475,19530,4830}))
+        notify('info', 'Toca el botón ☰ para abrir el menú.')
     else
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({11025,11550,10710,11655}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({8400,11970,10605,12075,11025,11655,11550,10185,3360,9555,7455,9765,3360,11760,10185,11970,10185,3360,10185,10290,11970,11025,11970,3360,10605,11340,3360,11445,10605,11550,20475,19530,4830}))
+        notify('info', 'Presiona [G] para abrir el menú.')
     end
 
     local itemsFolder = Workspace:FindFirstChild(Config.ItemsList.FolderName)
@@ -1063,11 +1051,11 @@ local function Initialize()
         for _, item in ipairs(itemsFolder:GetChildren()) do
             onItemAdded(item)
         end
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12075,12285,10395,10395,10605,12075,12075}), #itemsFolder:GetChildren() .. OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({3360,11025,12180,10605,11445,12075,3360,10395,10185,11970,10815,10185,10500,11655,12075,4830}))
+        notify('success', #itemsFolder:GetChildren() .. ' items cargados.')
     else
-        notify(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({12495,10185,11970,11550,11025,11550,10815}), OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({7035,10185,11970,11760,10605,12180,10185,3360,10500,10605,3360,11025,12180,10605,11445,12075,3360,11550,11655,3360,10605,11550,10395,11655,11550,12180,11970,10185,10500,10185,4830}))
+        notify('warning', 'Carpeta de items no encontrada.')
     end
-    switchTab(OtLOkiFlQqNvXznbMYpEwgOWiMfauMVqxxSBXHcgA({6930,11970,11025,11550,10815}))
+    switchTab('Bring')
     task.spawn(function()
         while MainFrame and MainFrame.Parent do
             for i = 0, 360, 2 do
@@ -1079,4 +1067,3 @@ local function Initialize()
 end
 
 pcall(Initialize)
-        
